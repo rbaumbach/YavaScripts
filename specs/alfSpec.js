@@ -44,8 +44,6 @@ describe('alf', function() {
         it('resolves the consumers promise with correct text', async function() {
           const resolvedResult = await subject.eatCat(isAbleToCatchCat, mockTimeOutter);
 
-          console.log(mockTimeOutter.getCall(0));
-
           expect(mockTimeOutter.args[0][1]).to.equal(1000);
 
           expect(resolvedResult).to.equal('Cat was eaten');
