@@ -13,6 +13,9 @@ module.exports.alf = {
         }
       }, 1000);
     });
+  },
+  getTodoList: function(axios) {
+    return axios.get('https://jsonplaceholder.typicode.com/todos')
   }
 }
 

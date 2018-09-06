@@ -13,6 +13,7 @@
     "mocha": "5.2.0"
   },
   "dependencies": {
+    "axios": "0.18.0",
     "sinon": "^6.1.5"
   }
 }
