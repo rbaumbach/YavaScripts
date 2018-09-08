@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb-base",
+  "overrides": [
+    {
+      "files": ["*Spec.js"],
+      "rules": {
+        "no-undef": "off",
+        "global-require": "off",
+        "implicit-arrow-linebreak": "off",
+        "import/no-extraneous-dependencies": "off",
+        "comma-dangle": "off",
+        "no-trailing-spaces": "off"
+      }
+    }
+  ]
+}

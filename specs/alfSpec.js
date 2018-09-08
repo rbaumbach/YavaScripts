@@ -17,7 +17,7 @@ describe('alf', () => {
   });
 
   it('has correct fur color', () => {
-    expect(subject['fur-color']).to.equal('Brown')
+    expect(subject['fur-color']).to.equal('Brown');
   });
 
   it('has specific likes', () => {
@@ -55,7 +55,7 @@ describe('alf', () => {
           isAbleToCatchCat = false;
         });
 
-        it('rejects the cosumers promise with the correct text', async () => {
+        it('rejects the consumers promise with the correct text', async () => {
           try {
             await subject.eatCat(isAbleToCatchCat, mockTimeOutter);
           } catch (error) {
@@ -75,11 +75,12 @@ describe('alf', () => {
 
     beforeEach(() => {
       fakeAxios = {
-                    get: function (endpoint) {
-                            capturedEndpoint = endpoint
-                            return stubbedPromise;
-                          }
-                  }
+        get(endpoint) {
+          capturedEndpoint = endpoint;
+
+          return stubbedPromise;
+        }
+      };
     });
 
     it('makes an axios GET call with proper endpoint', () => {
@@ -96,36 +97,39 @@ describe('alf', () => {
       let fakeResponse;
 
       beforeEach(() => {
-        fakeResponse = { data: [ { id: 1, title: '1. Eat Cat' } ] }
+        fakeResponse = {
+          data: [
+            {
+              id: 1,
+              title: '1. Eat Cat'
+            }
+          ]
+        };
 
-        stubbedPromise = new Promise(function(resolve) {
+        stubbedPromise = new Promise(((resolve) => {
           resolve(fakeResponse);
-        });
+        }));
       });
 
-      it('bubbles up the axios reponse of todos', () => {
-        return subject.getTodoList(fakeAxios).then(function(response) {
-          expect(response.data[0].id).to.equal(1);
-        });
-      });
+      it('bubbles up the axios reponse of todos', () => subject.getTodoList(fakeAxios).then((response) => {
+        expect(response.data[0].id).to.equal(1);
+      }));
     });
 
     describe('on rejection', () => {
       let fakeError;
 
       beforeEach(() => {
-        fakeError = { code: 'I am Error!' }
+        fakeError = { code: 'I am Error!' };
 
-        stubbedPromise = new Promise(function(reject) {
+        stubbedPromise = new Promise(((reject) => {
           reject(fakeError);
-        });
+        }));
       });
 
-      it('bubbles up the axios error of todos', () => {
-        return subject.getTodoList(fakeAxios).catch(function(error) {
-          expect(error.code).to.equal('I am Error!');
-        });
-      });
+      it('bubbles up the axios error of todos', () => subject.getTodoList(fakeAxios).catch((error) => {
+        expect(error.code).to.equal('I am Error!');
+      }));
     });
   });
 });
