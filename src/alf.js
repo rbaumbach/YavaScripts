@@ -3,24 +3,22 @@ module.exports.alf = {
   'home-planet': 'Melmac',
   'fur-color': 'Brown',
   likes: ['cats', 'jokes', 'mischief'],
-  eatCat: function(isAbleToCatchCat = isAbleToCatchCat(), timeOutter = setTimeout) {
-    return new Promise(function(resolve, reject) {
-      timeOutter(function () {
+  eatCat: (isAbleToCatchCat = isAbleToCatchCat(), timeOutter = setTimeout) => {
+    return new Promise((resolve, reject) => {
+      timeOutter(() => {
         if (isAbleToCatchCat) {
           resolve('Cat was eaten');
         } else {
-          reject('Cat got away');
+          reject('Cat got away'); // update to use an new Error("Cat got away")
         }
       }, 1000);
     });
   },
-  getTodoList: function(axios) {
+  getTodoList: (axios) => {
     return axios.get('https://jsonplaceholder.typicode.com/todos')
-  }
-}
+  },
+};
 
 function isAbleToCatchCat() {
-  // returns either a 0 or 1
-
-  return Math.floor(Math.random() * 2)
+  return Math.floor(Math.random() * 2);
 }

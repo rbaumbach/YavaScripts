@@ -9,8 +9,12 @@
   "author": "Ryan Baumbach",
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "^9.0.0",
     "chai": "4.1.2",
-    "mocha": "5.2.0"
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "5.2.0",
+    "prettier-eslint": "^8.8.2"
   },
   "dependencies": {
     "axios": "0.18.0",

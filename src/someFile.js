@@ -1,12 +1,12 @@
-const alf = require('../src/alf.js').alf
-const axios = require('axios')
+const axios = require('axios');
+const { alf } = require('../src/alf.js');
 
 console.log(alf.name);
 
 alf.getTodoList(axios)
-    .then(function(response) {
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
