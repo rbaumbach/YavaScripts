@@ -31,10 +31,14 @@ function isAbleToCatchCat() {
 
 function thinAxiosTodoResponse(axiosResponse) {
   return axiosResponse.data.map((todo) => {
-    delete todo.id;
-    delete todo.userId;
-    delete todo.completed;
+    const localTodo = todo;
 
-    return todo;
+    localTodo.priority = 1
+
+    delete localTodo.id;
+    delete localTodo.userId;
+    delete localTodo.completed;
+
+    return localTodo;
   });
 }

@@ -119,15 +119,17 @@ describe('alf', () => {
         }));
       });
 
-      it('resolves with list of titles only', () => {
+      it('resolves with list of titles with priority', () => {
         return subject.getTodoList(fakeAxios)
           .then((response) => {
             expect(response[0].title).to.equal('1. Eat Cat');
+            expect(response[0].priority).to.equal(1);
             expect(response[0].id).to.be.undefined;
             expect(response[0].userId).to.be.undefined;
             expect(response[0].completed).to.be.undefined;
 
             expect(response[1].title).to.equal('2. BarbraQue Cat');
+            expect(response[1].priority).to.equal(1);
             expect(response[1].id).to.be.undefined;
             expect(response[1].userId).to.be.undefined;
             expect(response[1].completed).to.be.undefined;
