@@ -9,16 +9,32 @@ module.exports.alf = {
         if (isAbleToCatchCat) {
           resolve('Cat was eaten');
         } else {
-          reject('Cat got away'); // update to use an new Error("Cat got away")
+          reject('Cat got away');
         }
       }, 1000);
     });
   },
   getTodoList: (axios) => {
     return axios.get('https://jsonplaceholder.typicode.com/todos')
-  },
+      .then((axiosResponse) => {
+        return thinAxiosTodoResponse(axiosResponse);
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
 };
 
 function isAbleToCatchCat() {
   return Math.floor(Math.random() * 2);
+}
+
+function thinAxiosTodoResponse(axiosResponse) {
+  return axiosResponse.data.map((todo) => {
+    delete todo.id;
+    delete todo.userId;
+    delete todo.completed;
+
+    return todo;
+  });
 }

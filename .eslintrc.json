@@ -2,6 +2,15 @@
   "extends": "airbnb-base",
   "overrides": [
     {
+      "files": ["*.js"],
+      "rules": {
+        "arrow-body-style": "off",
+        "prefer-promise-reject-errors": "off",
+        "comma-dangle": "off",
+        "no-use-before-define": "off"
+      }
+    },
+    {
       "files": ["*Spec.js"],
       "rules": {
         "no-undef": "off",
@@ -9,7 +18,8 @@
         "implicit-arrow-linebreak": "off",
         "import/no-extraneous-dependencies": "off",
         "comma-dangle": "off",
-        "no-trailing-spaces": "off"
+        "no-trailing-spaces": "off",
+        "no-unused-expressions": "off"
       }
     }
   ]

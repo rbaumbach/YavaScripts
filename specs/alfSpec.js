@@ -101,7 +101,15 @@ describe('alf', () => {
           data: [
             {
               id: 1,
-              title: '1. Eat Cat'
+              userId: 1,
+              title: '1. Eat Cat',
+              completed: true
+            },
+            {
+              id: 2,
+              userId: 2,
+              title: '2. BarbraQue Cat',
+              completed: false
             }
           ]
         };
@@ -111,9 +119,20 @@ describe('alf', () => {
         }));
       });
 
-      it('bubbles up the axios reponse of todos', () => subject.getTodoList(fakeAxios).then((response) => {
-        expect(response.data[0].id).to.equal(1);
-      }));
+      it('resolves with list of titles only', () => {
+        return subject.getTodoList(fakeAxios)
+          .then((response) => {
+            expect(response[0].title).to.equal('1. Eat Cat');
+            expect(response[0].id).to.be.undefined;
+            expect(response[0].userId).to.be.undefined;
+            expect(response[0].completed).to.be.undefined;
+
+            expect(response[1].title).to.equal('2. BarbraQue Cat');
+            expect(response[1].id).to.be.undefined;
+            expect(response[1].userId).to.be.undefined;
+            expect(response[1].completed).to.be.undefined;
+          });
+      });
     });
 
     describe('on rejection', () => {
@@ -127,9 +146,12 @@ describe('alf', () => {
         }));
       });
 
-      it('bubbles up the axios error of todos', () => subject.getTodoList(fakeAxios).catch((error) => {
-        expect(error.code).to.equal('I am Error!');
-      }));
+      it('bubbles up the axios error of todos', () => {
+        return subject.getTodoList(fakeAxios)
+          .catch((error) => {
+            expect(error.code).to.equal('I am Error!');
+          });
+      });
     });
   });
 });
